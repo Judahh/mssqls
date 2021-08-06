@@ -27,11 +27,9 @@ export class MSSQL implements PoolAdapter {
     const pool = await this.pool.connect();
     script = script.replace(/[$]\d/g, (substring: string) => {
       if (values) {
-        let element = values[parseInt(substring.replace('$', '')) - 1];
-        element = SqlString.escape(element);
-        const isString = typeof element === 'string';
-        if (isString) element = "'" + element + "'";
-        return element as string;
+        return SqlString.escape(
+          values[parseInt(substring.replace('$', '')) - 1]
+        ) as string;
       }
       return '';
     });
