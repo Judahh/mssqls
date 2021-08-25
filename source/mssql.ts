@@ -25,7 +25,7 @@ export class MSSQL implements PoolAdapter {
     //! According to the documentation for mssql you can use es6 template literals in you INSERT statement.
     //! EX.: pool.query`INSERT INTO sigfoxmessages (device,data,station,rssi,unix_timestamp) VALUES(${request.payload.device}, ${request.payload.data}, ${request.payload.station}, ${request.payload.rssi}, ${request.payload.time}))`
     const pool = await this.pool.connect();
-    script = script.replace(/[$]\d/g, (substring: string) => {
+    script = script.replace(/[$]\d*/g, (substring: string) => {
       if (values) {
         return SqlString.escape(
           values[parseInt(substring.replace('$', '')) - 1]
