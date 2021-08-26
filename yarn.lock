@@ -517,9 +517,9 @@
     strip-json-comments "^3.1.1"
 
 "@flexiblepersistence/dao@latest":
-  version "0.2.26"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-0.2.26.tgz#b51aa1dd03ad7e2592827b8a3d0721aadc8fc277"
-  integrity sha512-wvSk10KQZMw/mGsOkR0Xv6tjGCo4W1E/Ahaw7txviDljOLWYawUouH+CM4HFKDzXhjd31VJqLb0y0Q8k76P0qw==
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-0.3.1.tgz#324f001ca4340ac1eb6941ef6f39ae738276a9dc"
+  integrity sha512-JDnvpOGsBfkS1jy5ecyBejG8Z9X9+gACTybP+ySWm5954Woc83pddbDDay87HQy8eJFfMrWDPlqpLIuwD1X+mA==
   dependencies:
     bignumber.js latest
     journaly latest
@@ -876,9 +876,9 @@
     form-data "^3.0.0"
 
 "@types/node@*", "@types/node@latest":
-  version "16.7.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.7.1.tgz#c6b9198178da504dfca1fd0be9b2e1002f1586f0"
-  integrity sha512-ncRdc45SoYJ2H4eWU9ReDfp3vtFqDYhjOsKlFFUDEn8V1Bgr2RjYal8YT5byfadWIRluhPFU6JiDOl0H6Sl87A==
+  version "16.7.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.7.2.tgz#0465a39b5456b61a04d98bd5545f8b34be340cb7"
+  integrity sha512-TbG4TOx9hng8FKxaVrCisdaxKxqEwJ3zwHoCWXZ0Jw6mnvTInpaB99/2Cy4+XxpXtjNv9/TgfGSvZFyfV/t8Fw==
 
 "@types/node@^8.0.47":
   version "8.10.66"
@@ -1491,9 +1491,9 @@ camelcase@^6.0.0:
   integrity sha512-c7wVvbw3f37nuobQNtgsgG9POC9qMbNuMQmTCqZv23b6MIz0fcYpBiOlv9gEN/hdLdnZTDQhg6e9Dq5M1vKvfg==
 
 caniuse-lite@^1.0.30001251:
-  version "1.0.30001251"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001251.tgz#6853a606ec50893115db660f82c094d18f096d85"
-  integrity sha512-HOe1r+9VkU4TFmnU70z+r7OLmtR+/chB1rdcJUeQlAinjEeb0cKL20tlAtOagNZhbrtLnCvV19B4FmF1rgzl6A==
+  version "1.0.30001252"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001252.tgz#cb16e4e3dafe948fc4a9bb3307aea054b912019a"
+  integrity sha512-I56jhWDGMtdILQORdusxBOH+Nl/KgQSdDmpJezYddnAkVOmnoU8zwjTV9xAjMIYxr0iPreEAVylCGcmHCjfaOw==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -1858,9 +1858,9 @@ ecdsa-sig-formatter@1.0.11:
     safe-buffer "^5.0.1"
 
 electron-to-chromium@^1.3.811:
-  version "1.3.817"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.817.tgz#911b4775b5d9fa0c4729d4694adc81de85d8d8f6"
-  integrity sha512-Vw0Faepf2Id9Kf2e97M/c99qf168xg86JLKDxivvlpBQ9KDtjSeX0v+TiuSE25PqeQfTz+NJs375b64ca3XOIQ==
+  version "1.3.818"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.818.tgz#32ed024fa8316e5d469c96eecbea7d2463d80085"
+  integrity sha512-c/Z9gIr+jDZAR9q+mn40hEc1NharBT+8ejkarjbCDnBNFviI6hvcC5j2ezkAXru//bTnQp5n6iPi0JA83Tla1Q==
 
 emittery@^0.7.1:
   version "0.7.2"
@@ -3856,9 +3856,9 @@ mongodb@4.1.1:
     saslprep "^1.0.0"
 
 mongoose@latest:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.0.0.tgz#215319291d23f3768203f5392ba5229debe9702f"
-  integrity sha512-aS1y1xEjFLz8wYVvJiI9T/ut/BssC2Q4K/XtG1oqHcyiMuV+qPOpRpklSmC2Z/Q7A2fE2NlBZatQGf7FnoAlrA==
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.0.1.tgz#56f8604c2bf584a200746e7f64e5d65d483ffe41"
+  integrity sha512-WESkAtJuJqXKjiQj+HiL3Ipr6eLWx9RIrjCE2HzxScUApnFLXSHdd5gGCeEE3Pl+qcill4fGYy/uysThCMQ6PQ==
   dependencies:
     bson "^4.2.2"
     kareem "2.3.2"
