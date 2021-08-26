@@ -4,6 +4,9 @@ import { PersistenceInfo } from 'flexiblepersistence';
 import SqlString from 'tsqlstring';
 
 export class MSSQL implements PoolAdapter {
+  simpleCreate = true;
+  simpleUpdate = true;
+  simpleDelete = true;
   protected pool: ConnectionPool;
   protected persistenceInfo: PersistenceInfo;
   constructor(persistenceInfo: PersistenceInfo) {
