@@ -39,8 +39,13 @@ export class MSSQL implements PoolAdapter {
       await this.pool.query(query, (error, results) => {
         if (error && reject) {
           reject(new Error(error));
-        } else if (options) {
-          options.numberOfPages = results.rows[0];
+        } else if (
+          options?.pageSize &&
+          results?.recordset &&
+          results?.recordset[0]
+        ) {
+          const rows = results.recordset[0][''];
+          options.numberOfPages = Math.ceil(rows / options.pageSize);
         }
       });
     }
