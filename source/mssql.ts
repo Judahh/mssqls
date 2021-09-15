@@ -7,6 +7,14 @@ export class MSSQL implements PoolAdapter {
   simpleCreate = true;
   simpleUpdate = true;
   simpleDelete = true;
+  isCreateLimitBefore = true;
+  isReadLimitBefore = true;
+  isUpdateLimitBefore = true;
+  isDeleteLimitBefore = true;
+  createLimit = 'TOP';
+  readLimit = 'TOP';
+  updateLimit = 'TOP';
+  deleteLimit = 'TOP';
   protected pool: ConnectionPool;
   protected persistenceInfo: PersistenceInfo;
   constructor(persistenceInfo: PersistenceInfo) {
