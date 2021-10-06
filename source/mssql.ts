@@ -6,7 +6,6 @@ import SqlString from 'tsqlstring';
 export class MSSQL implements PoolAdapter {
   simpleCreate = true;
   simpleUpdate = true;
-  simpleDelete = true;
   isCreateLimitBefore = true;
   isReadLimitBefore = true;
   isUpdateLimitBefore = true;
