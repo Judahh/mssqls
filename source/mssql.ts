@@ -1,9 +1,9 @@
-import { PoolAdapter } from '@flexiblepersistence/dao';
+import { IPool } from '@flexiblepersistence/dao';
 import { ConnectionPool } from 'mssql';
 import { PersistenceInfo } from 'flexiblepersistence';
 import SqlString from 'tsqlstring';
 
-export class MSSQL implements PoolAdapter {
+export class MSSQL implements IPool {
   simpleCreate = true;
   simpleUpdate = true;
   isCreateLimitBefore = true;
