@@ -1,6 +1,6 @@
 {
   "name": "@flexiblepersistence/mssql",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A implementation for Flexible Persistence DAO's PoolAdapter",
   "main": "dist/source/index.js",
   "keywords": [
@@ -36,10 +36,10 @@
   "dependencies": {
     "tsqlstring": "latest",
     "mssql": "latest",
-    "flexiblepersistence": "latest",
-    "@flexiblepersistence/dao": "latest"
+    "flexiblepersistence": "latest"
   },
   "devDependencies": {
+    "@flexiblepersistence/dao": "latest",
     "@flexiblepersistence/default-initializer": "latest",
     "flexiblepersistence": "latest",
     "@types/jest": "latest",
