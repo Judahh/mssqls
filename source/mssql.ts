@@ -61,14 +61,14 @@ export class MSSQL implements IPool {
     page?: number | undefined;
     pageSize?: number | undefined;
     numberOfPages?: number | undefined;
-  }): Promise<unknown> {
+  }, idName?: string): Promise<unknown> {
     let query = '';
     if (this.validateOptions(options)) {
       query =
         ` DECLARE @PageNumber AS INT, @RowsPage AS INT ` +
         `SET @PageNumber = ${options?.page} ` +
         `SET @RowsPage = ${options?.pageSize} ` +
-        `SELECT * FROM (SELECT DENSE_RANK() OVER(ORDER BY pagingElement.id) AS elementNumber,* FROM ( `;
+        `SELECT * FROM (SELECT DENSE_RANK() OVER(ORDER BY ${idName}) AS elementNumber,* FROM ( `;
     }
     return query;
   }
