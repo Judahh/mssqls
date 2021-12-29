@@ -103,9 +103,12 @@ export class MSSQL implements IPool {
     const pool = await this.pool.connect();
     script = script.replace(/[$]\d*/g, (substring: string) => {
       if (values) {
-        return SqlString.escape(
-          values[parseInt(substring.replace('$', '')) - 1]
-        ) as string;
+        let value = values[parseInt(substring.replace('$', '')) - 1];
+        if(Array.isArray(value)){
+          value = '('+value.map((a)=>SqlString.escape(a)).join(',')+')';
+          return value;
+        }
+        return SqlString.escape(value) as string;
       }
       return '';
     });
