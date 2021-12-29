@@ -494,9 +494,9 @@
     strip-json-comments "^3.1.1"
 
 "@flexiblepersistence/dao@latest":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-1.2.8.tgz#a7b1d089f9a45a818a94dc79dbaff4deecc79993"
-  integrity sha512-d/Qe7hV4Ni/ZPhnD29cgfWPbEHNZ2FtL2yNwPAwL0DzkBYcyiG+EUj4xV14SI0ss7pVxrUSJo9toTaJ0TnZS3A==
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-1.2.10.tgz#fd2cd71e02d9541ba2d99cc2830f1f6f18a0a28d"
+  integrity sha512-jMAhwEvjjJQtOEnetDAEK5nBW30vuQW2kkz95mKvyS92PxXqIulY0zDOLBejIuTuPZz4LdcCMjRDdKYJ464FGw==
   dependencies:
     bignumber.js latest
     journaly latest
@@ -1655,9 +1655,9 @@ ecdsa-sig-formatter@1.0.11:
     safe-buffer "^5.0.1"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.29"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.29.tgz#a9b85ab888d0122124c9647c04d8dd246fae94b6"
-  integrity sha512-N2Jbwxo5Rum8G2YXeUxycs1sv4Qme/ry71HG73bv8BvZl+I/4JtRgK/En+ST/Wh/yF1fqvVCY4jZBgMxnhjtBA==
+  version "1.4.30"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.30.tgz#0f75a1dce26dffbd5a0f7212e5b87fe0b61cbc76"
+  integrity sha512-609z9sIMxDHg+TcR/VB3MXwH+uwtrYyeAwWc/orhnr90ixs6WVGSrt85CDLGUdNnLqCA7liv426V20EecjvflQ==
 
 emittery@^0.8.1:
   version "0.8.1"
