@@ -106,7 +106,7 @@ export class MSSQL implements IPool {
         let value = values[parseInt(substring.replace('$', '')) - 1];
         if(Array.isArray(value)){
           value = '('+value.map((a)=>SqlString.escape(a)).join(',')+')';
-          return value;
+          return value as string;
         }
         return SqlString.escape(value) as string;
       }
