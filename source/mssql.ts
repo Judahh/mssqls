@@ -81,8 +81,8 @@ export class MSSQL implements IPool {
     if (this.validateOptions(options)) {
       query =
         `) as pagingElement) as newPagingElement WHERE ` +
-        `elementNumber BETWEEN((@PageNumber - 1) * @RowsPage + 1) ` +
-        `AND (@PageNumber * @RowsPage) `;
+        `elementNumber BETWEEN(@PageNumber * @RowsPage + 1) ` +
+        `AND ((@PageNumber + 1) * @RowsPage) `;
     }
     return query;
   }
