@@ -61,14 +61,14 @@ export class MSSQL implements IPool {
     page?: number | undefined;
     pageSize?: number | undefined;
     numberOfPages?: number | undefined;
-  }): Promise<unknown> {
+  }, idName?: string): Promise<unknown> {
     let query = '';
     if (this.validateOptions(options)) {
       query =
         ` DECLARE @PageNumber AS INT, @RowsPage AS INT ` +
         `SET @PageNumber = ${options?.page} ` +
         `SET @RowsPage = ${options?.pageSize} ` +
-        `SELECT * FROM (SELECT DENSE_RANK() OVER(ORDER BY pagingElement.id) AS elementNumber,* FROM ( `;
+        `SELECT * FROM (SELECT DENSE_RANK() OVER(ORDER BY ${idName}) AS elementNumber,* FROM ( `;
     }
     return query;
   }
@@ -103,9 +103,12 @@ export class MSSQL implements IPool {
     const pool = await this.pool.connect();
     script = script.replace(/[$]\d*/g, (substring: string) => {
       if (values) {
-        return SqlString.escape(
-          values[parseInt(substring.replace('$', '')) - 1]
-        ) as string;
+        let value = values[parseInt(substring.replace('$', '')) - 1];
+        if(Array.isArray(value)){
+          value = '('+value.map((a)=>SqlString.escape(a)).join(',')+')';
+          return value as string;
+        }
+        return SqlString.escape(value) as string;
       }
       return '';
     });
