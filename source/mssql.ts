@@ -1,6 +1,6 @@
 import { IPool } from '@flexiblepersistence/dao';
 import { ConnectionPool } from 'mssql';
-import { PersistenceInfo } from 'flexiblepersistence';
+import { IEventOptions, PersistenceInfo } from 'flexiblepersistence';
 import SqlString from 'tsqlstring';
 
 export class MSSQL implements IPool {
@@ -20,11 +20,7 @@ export class MSSQL implements IPool {
     this.persistenceInfo = persistenceInfo;
     this.pool = new ConnectionPool(this.persistenceInfo);
   }
-  validateOptions(options?: {
-    page?: number | undefined;
-    pageSize?: number | undefined;
-    pagesize?: number | undefined;
-  }): boolean {
+  validateOptions(options?: IEventOptions): boolean {
     if (options) {
       options.pageSize = options?.pageSize || options?.pagesize;
       if (options.pageSize !== undefined && options.pageSize !== null) {
@@ -40,35 +36,20 @@ export class MSSQL implements IPool {
     }
     return false;
   }
-  async getPages(
-    script: string,
-    options?: {
-      page?: number | undefined;
-      pageSize?: number | undefined;
-      numberOfPages?: number | undefined;
-      pagesofpages?: number | undefined;
-      pages?: number | undefined;
-    }
-  ): Promise<number> {
+  async getPages(script: string, options?: IEventOptions): Promise<number> {
     if (options && this.validateOptions(options)) {
-      const query = 'SELECT COUNT(*) FROM ( ' + script + ' ) as numberOfPages';
+      const query = 'SELECT COUNT(*) FROM ( ' + script + ' ) as pages';
       const pool = await this.pool.connect();
       const results = await pool.request().query(query);
       if (options?.pageSize && results?.recordset && results?.recordset[0]) {
         const rows = results.recordset[0][''];
-        options.pages = Math.ceil(rows / options.pageSize);
-        options.numberOfPages = options.pages;
-        options.pagesofpages = options.pages;
+        options.pages = Math.ceil(rows / parseInt(options.pageSize.toString()));
       }
     }
-    return options?.pages || 0;
+    return parseInt((options?.pages || 1).toString());
   }
   async generatePaginationPrefix(
-    options?: {
-      page?: number | undefined;
-      pageSize?: number | undefined;
-      numberOfPages?: number | undefined;
-    },
+    options?: IEventOptions,
     idName?: string
   ): Promise<string> {
     let query = '';
@@ -81,11 +62,7 @@ export class MSSQL implements IPool {
     }
     return query;
   }
-  async generatePaginationSuffix(options?: {
-    page?: number | undefined;
-    pageSize?: number | undefined;
-    numberOfPages?: number | undefined;
-  }): Promise<string> {
+  async generatePaginationSuffix(options?: IEventOptions): Promise<string> {
     let query = '';
     if (this.validateOptions(options)) {
       query =
