@@ -42,14 +42,20 @@ export class MSSQL implements IPool {
     idName?: string
   ): Promise<number> {
     if (options && this.validateOptions(options)) {
+      const denseRank = idName
+        ? 'SELECT distinct DENSE_RANK() OVER(ORDER BY ' +
+          idName +
+          ') AS elementNumber,' +
+          idName +
+          ' FROM ('
+        : '';
+      const denseRankEnd = idName ? ' ) as pagingElement' : '';
       const query =
-        'SELECT COUNT(*) FROM ( SELECT distinct DENSE_RANK() OVER(ORDER BY ' +
-        idName +
-        ') AS elementNumber,' +
-        idName +
-        ' FROM (' +
+        'SELECT COUNT(*) FROM ( ' +
+        denseRank +
         script +
-        ' ) as pages) as pagingElement';
+        denseRankEnd +
+        ' ) as pages';
       const pool = await this.pool.connect();
       const results = await pool.request().query(query);
       if (options?.pageSize && results?.recordset && results?.recordset[0]) {
