@@ -38,6 +38,7 @@ export class MSSQL implements IPool {
   }
   async getPages(
     script: string,
+    values?: Array<unknown>,
     options?: IEventOptions,
     idName?: string
   ): Promise<number> {
@@ -56,8 +57,7 @@ export class MSSQL implements IPool {
         script +
         denseRankEnd +
         ' ) as pages';
-      const pool = await this.pool.connect();
-      const results = await pool.request().query(query);
+      const results = await this.query(query, values);
       if (options?.pageSize && results?.recordset && results?.recordset[0]) {
         const rows = results.recordset[0][''];
         options.pages = Math.ceil(rows / parseInt(options.pageSize.toString()));
