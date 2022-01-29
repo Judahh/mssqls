@@ -51,6 +51,7 @@ jobs:
           MSSQL_PORT: ${{ job.services.mssql.ports[1433] }}
           MSSQL_USER: "sa"
       - name: ZIP TO ARTIFACT
+        if: ${{ github.ref_name == 'main' || github.ref_name == 'master' }}
         uses: judahh/zipToArtifact@main
         with:
           production: true
