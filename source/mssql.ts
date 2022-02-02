@@ -43,16 +43,22 @@ export class MSSQL implements IPool {
     idName?: string
   ): Promise<number> {
     if (options && this.validateOptions(options)) {
-      const denseRank = idName
-        ? 'SELECT distinct DENSE_RANK() OVER(ORDER BY ' +
-          idName +
-          ') AS elementNumber,' +
-          idName +
-          ' FROM ('
+      let denseRank = !options.noDenseRank
+        ? 'DENSE_RANK() OVER(ORDER BY ' + idName + ') AS elementNumber,'
         : '';
+      const distinct = !options.noDistinct ? 'distinct ' : '';
+      denseRank = idName
+        ? 'SELECT ' + distinct + ' ' + denseRank + idName + ' FROM ('
+        : '';
+      const elementNumber = options.useRowNumber
+        ? 'ROW_NUMBER() OVER (ORDER BY ' + idName + ')'
+        : 'COUNT(*)';
+
       const denseRankEnd = idName ? ' ) as pagingElement' : '';
       const query =
-        'SELECT COUNT(*) FROM ( ' +
+        'SELECT ' +
+        elementNumber +
+        ' FROM ( ' +
         denseRank +
         script +
         denseRankEnd +
@@ -71,11 +77,18 @@ export class MSSQL implements IPool {
   ): Promise<string> {
     let query = '';
     if (this.validateOptions(options)) {
+      let denseRank = !options.noDenseRank
+        ? 'DENSE_RANK() OVER(ORDER BY ' + idName + ') AS elementNumber,'
+        : '';
+      const distinct = !options.noDistinct ? 'distinct ' : '';
+      denseRank = idName
+        ? 'SELECT ' + distinct + ' ' + denseRank + idName + ' FROM ('
+        : '';
       query =
         ` DECLARE @PageNumber AS INT, @RowsPage AS INT ` +
         `SET @PageNumber = ${options?.page} ` +
         `SET @RowsPage = ${options?.pageSize} ` +
-        `SELECT * FROM (SELECT DENSE_RANK() OVER(ORDER BY ${idName}) AS elementNumber,* FROM ( `;
+        `SELECT * FROM (SELECT ${denseRank} * FROM ( `;
     }
     return query;
   }
