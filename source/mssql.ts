@@ -20,11 +20,7 @@ export class MSSQL implements IPool {
     this.persistenceInfo = persistenceInfo;
     this.pool = new ConnectionPool(this.persistenceInfo);
   }
-  validateOptions(
-    options?:
-      | IEventOptions
-      | { noDenseRank?: boolean; noDistinct?: boolean; useRowNumber?: boolean }
-  ): boolean {
+  validateOptions(options?: IEventOptions): boolean {
     if (options) {
       options.pageSize = options?.pageSize || options?.pagesize;
       if (options?.pageSize !== undefined && options?.pageSize !== null) {
@@ -44,9 +40,7 @@ export class MSSQL implements IPool {
   async getPages(
     script: string,
     values?: Array<unknown>,
-    options?:
-      | IEventOptions
-      | { noDenseRank?: boolean; noDistinct?: boolean; useRowNumber?: boolean },
+    options?: IEventOptions,
     idName?: string
   ): Promise<number> {
     if (options && this.validateOptions(options)) {
@@ -81,9 +75,7 @@ export class MSSQL implements IPool {
     return parseInt((options?.pages || 1).toString());
   }
   async generatePaginationPrefix(
-    options?:
-      | IEventOptions
-      | { noDenseRank?: boolean; noDistinct?: boolean; useRowNumber?: boolean },
+    options?: IEventOptions,
     idName?: string
   ): Promise<string> {
     let query = '';
@@ -103,11 +95,7 @@ export class MSSQL implements IPool {
     }
     return query;
   }
-  async generatePaginationSuffix(
-    options?:
-      | IEventOptions
-      | { noDenseRank?: boolean; noDistinct?: boolean; useRowNumber?: boolean }
-  ): Promise<string> {
+  async generatePaginationSuffix(options?: IEventOptions): Promise<string> {
     let query = '';
     if (this.validateOptions(options)) {
       query =
