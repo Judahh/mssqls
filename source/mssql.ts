@@ -27,7 +27,7 @@ export class MSSQL implements IPool {
         options.page =
           options?.page !== undefined && options?.page !== null
             ? parseInt(options?.page?.toString())
-            : 1;
+            : 0;
         options.pageSize = parseInt(options?.pageSize?.toString());
         return (
           !isNaN(options?.page) &&
