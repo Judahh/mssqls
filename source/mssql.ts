@@ -133,6 +133,10 @@ export class MSSQL implements IPool {
       }
       return '';
     });
+    if(JSON.parse((process?.env?.DAO_MSSQL_LOG || 'false').toLowerCase())){
+      console.log('MSSQL QUERY:');
+      console.log(script);
+    }
     return pool.request().query(script);
   }
   public end(): Promise<boolean> {
