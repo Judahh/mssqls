@@ -1,6 +1,6 @@
 {
   "name": "@flexiblepersistence/mssql",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "description": "A implementation for Flexible Persistence DAO's PoolAdapter",
   "main": "dist/source/index.js",
   "keywords": [
