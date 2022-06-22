@@ -1942,10 +1942,10 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.5.tgz#76c8584f4fc843db64702a6bd04ab7a8bd666da3"
   integrity sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==
 
-flexiblepersistence@latest:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-3.1.0.tgz#9c94f218448d9597f5a16f3c4d51305fc875ca27"
-  integrity sha512-h0GblSJL7wrNpCA15mXXul5UNpeFVaN+49ScLwqiKI2iypOmT8ILOzfW7hcZH/cseTybOxSuqV871nZFReCX0w==
+flexiblepersistence@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-3.1.1.tgz#ffa1b3c6eedbb142eb37f0e5b4fb1708d213e8c3"
+  integrity sha512-tb9AZl7FAx68ADYm6tTkByPRcsfIz0ivOUZgSo8/1cNyFJyIBPduHCOajXyXfTUEP1zPx1SQG4sWR7xowZCfAw==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     journaly latest

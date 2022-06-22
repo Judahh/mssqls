@@ -36,12 +36,12 @@
   "dependencies": {
     "tsqlstring": "latest",
     "mssql": "latest",
-    "flexiblepersistence": "latest"
+    "flexiblepersistence": "3.1.1"
   },
   "devDependencies": {
     "@flexiblepersistence/dao": "latest",
     "@flexiblepersistence/default-initializer": "latest",
-    "flexiblepersistence": "latest",
+    "flexiblepersistence": "3.1.1",
     "@types/jest": "latest",
     "@types/node": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
