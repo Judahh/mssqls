@@ -1,6 +1,6 @@
 {
   "name": "@flexiblepersistence/mssql",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "description": "A implementation for Flexible Persistence DAO's PoolAdapter",
   "main": "dist/source/index.js",
   "keywords": [
@@ -28,7 +28,7 @@
     "url": "git+https://github.com/Judahh/flexiblePersistence.git"
   },
   "author": "Judah Holanda Correia Lima <judahholanda7@gmail.com> (https://judahh.com)",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Judahh/flexiblePersistence/issues"
   },
