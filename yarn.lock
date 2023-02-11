@@ -1205,9 +1205,9 @@
     strip-json-comments "^3.1.1"
 
 "@flexiblepersistence/dao@latest":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-2.1.5.tgz#2a1b4adbbd7a3c4990270c0202ff534a07da110f"
-  integrity sha512-eEVmghLVJ0/ztYDPAajy0sTnnKl1oYL9f6JNQtx1D523vU71aLx9s9/JNDz6QGlQ9zqS6tOeovhPU8adcgx2Tw==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-2.2.0.tgz#996b2d110e3e97ae2b873b6544abec3a50d6a73c"
+  integrity sha512-RDekaeG1IKmd/NxOUxgYzIRf7hHsLZzDSW6CqJoOH3HBMolQ+dGBV9qq3sEWgQjm/1Ku9elYKVSBBf8TQB3mrg==
   dependencies:
     bignumber.js latest
     journaly latest
@@ -2697,9 +2697,9 @@ flatted@^3.1.0:
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
 flexiblepersistence@latest:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-3.3.0.tgz#fab63a185265274bab4031c6eea6e21cda9cdbf6"
-  integrity sha512-R9s3x90xUdqjkqyz+0uEu9eaXB9ibU3RktmIDV6ok+266ObKBhsWakMRSBijLYmE/km2btCMdXHhDHkpl6+kzA==
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-4.0.1.tgz#16918639f7e7afb9eae36ab8dc64e8ec036e6788"
+  integrity sha512-HJcFew979XMxIRQlTu6RBN1Y/9u0eR6XaS/hv7u4LUegu8XArKaC5DyjiE2NjvgWOEOP8XjS3VXoe1aCD/Orag==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     journaly latest
