@@ -2,6 +2,7 @@ import { IPool } from '@flexiblepersistence/dao';
 import { ConnectionPool } from 'mssql';
 import { IEventOptions, PersistenceInfo } from 'flexiblepersistence';
 import SqlString from 'tsqlstring';
+import { Transaction } from './transaction';
 
 export class MSSQL implements IPool {
   simpleCreate = true;
@@ -133,11 +134,22 @@ export class MSSQL implements IPool {
       }
       return '';
     });
-    if(JSON.parse((process?.env?.DAO_MSSQL_LOG || 'false').toLowerCase())){
+    if (JSON.parse((process?.env?.DAO_MSSQL_LOG || 'false').toLowerCase())) {
       console.log('MSSQL QUERY:');
       console.log(script);
     }
     return pool.request().query(script);
+  }
+  public async begin(options?): Promise<Transaction> {
+    const t = new Transaction(this.pool);
+    await t.begin(options);
+    return t;
+  }
+  public async commit(transaction: Transaction): Promise<void> {
+    await transaction.commit();
+  }
+  public async rollback(transaction: Transaction): Promise<void> {
+    await transaction.rollback();
   }
   public end(): Promise<boolean> {
     return this.pool.close();
