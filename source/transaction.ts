@@ -1,13 +1,18 @@
 import { IPool } from '@flexiblepersistence/dao';
+import { ITransaction } from 'flexiblepersistence';
 import { Transaction as T } from 'mssql';
 
-export class Transaction {
+export class Transaction implements ITransaction {
   protected pool: IPool;
   protected transaction: T;
 
   constructor(pool: IPool) {
     this.pool = pool;
     this.transaction = new T(this.pool);
+  }
+
+  public getMSTransaction(): T {
+    return this.transaction;
   }
 
   public async begin(options?): Promise<void> {
