@@ -21,6 +21,8 @@ export class MSSQL implements IPool {
     this.persistenceInfo = persistenceInfo;
     this.pool = new ConnectionPool(this.persistenceInfo);
   }
+  simpleDelete?: boolean | undefined;
+
   validateOptions(options?: IEventOptions): boolean {
     if (options) {
       options.pageSize = options?.pageSize || options?.pagesize;
@@ -79,7 +81,8 @@ export class MSSQL implements IPool {
     idName?: string
   ): Promise<string> {
     let query = '';
-    if (JSON.parse(process.env.DATABASE_HAS_PAGINATION || 'false')) return '';
+    if (JSON.parse(process.env.DATABASE_HAS_PAGINATION || 'false'))
+      return query;
     if (this.validateOptions(options)) {
       let elementNumber =
         (!options?.noDenseRank
@@ -98,17 +101,31 @@ export class MSSQL implements IPool {
     }
     return query;
   }
-  async generatePaginationSuffix(
+  async generatePaginationSuffix(options?: IEventOptions): Promise<string> {
+    let query = '';
+
+    if (this.validateOptions(options)) {
+      if (JSON.parse(process.env.DATABASE_HAS_PAGINATION || 'false')) {
+        return query;
+      }
+      query =
+        `) as pagingElement) as newPagingElement WHERE ` +
+        `elementNumber BETWEEN(@PageNumber * @RowsPage + 1) ` +
+        `AND ((@PageNumber + 1) * @RowsPage) `;
+    }
+    return query;
+  }
+
+  async groupByPagination(
     options?: IEventOptions,
-    _idName?: string,
+    idName?: string,
     internalQuery?: string,
     groupBy?: string
   ): Promise<string> {
-    let query = '';
     if (
       this.validateOptions(options) &&
       JSON.parse(process.env.DATABASE_HAS_PAGINATION || 'false')
-    )
+    ) {
       return ` ${
         internalQuery?.toLowerCase().includes('order by') ||
         groupBy?.toLowerCase().replaceAll('  ', ' ').includes('order by')
@@ -116,14 +133,9 @@ export class MSSQL implements IPool {
           : 'ORDER BY id'
       } OFFSET ${
         Number(options?.page || 0) * Number(options?.pageSize || 10)
-      } ROWS FETCH NEXT 10 ROWS ONLY `;
-    if (this.validateOptions(options)) {
-      query =
-        `) as pagingElement) as newPagingElement WHERE ` +
-        `elementNumber BETWEEN(@PageNumber * @RowsPage + 1) ` +
-        `AND ((@PageNumber + 1) * @RowsPage) `;
+      } ROWS FETCH NEXT ${Number(options?.pageSize || 10)} ROWS ONLY `;
     }
-    return query;
+    return groupBy || '';
   }
   public getPersistenceInfo(): PersistenceInfo {
     return this.persistenceInfo;
