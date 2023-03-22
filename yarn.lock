@@ -1224,9 +1224,9 @@
   integrity sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==
 
 "@flexiblepersistence/dao@latest":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-2.4.0.tgz#5c6c08c542e955675bbdf25fac341805deef35bf"
-  integrity sha512-MqeTCsDWzMCX4PfpfVJhBQAqkZVYdETCLoyircYp+R64ZfTdMFT3dhrMDOR2d0rK/9Z9tcPg7lGBjm6g5mM+7w==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-2.4.1.tgz#50f73604445f1b3c187f9da178394ce02e996de3"
+  integrity sha512-g/Gdm7ge7kf1Wmc08qtC0DH6IPULfLFBHu6AwegpJEwH9Rv79ObVPzjpQbZn+JM/Gj4bq5HMDzebO3YVcvIS4w==
   dependencies:
     bignumber.js latest
     journaly latest
