@@ -129,7 +129,7 @@ export class MSSQL implements IPool {
       return ` ${
         internalQuery?.toLowerCase().includes('order by') ||
         groupBy?.toLowerCase().replaceAll('  ', ' ').includes('order by')
-          ? ''
+          ? groupBy
           : 'ORDER BY id'
       } OFFSET ${
         Number(options?.page || 0) * Number(options?.pageSize || 10)
