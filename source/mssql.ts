@@ -43,7 +43,9 @@ export class MSSQL implements IPool {
     values?: Array<unknown>,
     options?: IEventOptions,
     idName?: string
-  ): Promise<number> {
+  ): Promise<number | undefined> {
+    if (JSON.parse(process.env.DATABASE_HAS_PAGINATION || 'false'))
+      return undefined;
     if (options && this.validateOptions(options)) {
       let elementNumber =
         (!options?.noDenseRank && idName !== undefined
@@ -69,6 +71,7 @@ export class MSSQL implements IPool {
         );
       }
     }
+
     return parseInt((options?.pages || 1).toString());
   }
   async generatePaginationPrefix(
@@ -76,6 +79,7 @@ export class MSSQL implements IPool {
     idName?: string
   ): Promise<string> {
     let query = '';
+    if (JSON.parse(process.env.DATABASE_HAS_PAGINATION || 'false')) return '';
     if (this.validateOptions(options)) {
       let elementNumber =
         (!options?.noDenseRank
@@ -94,8 +98,25 @@ export class MSSQL implements IPool {
     }
     return query;
   }
-  async generatePaginationSuffix(options?: IEventOptions): Promise<string> {
+  async generatePaginationSuffix(
+    options?: IEventOptions,
+    _idName?: string,
+    internalQuery?: string,
+    groupBy?: string
+  ): Promise<string> {
     let query = '';
+    if (
+      this.validateOptions(options) &&
+      JSON.parse(process.env.DATABASE_HAS_PAGINATION || 'false')
+    )
+      return ` ${
+        internalQuery?.toLowerCase().includes('order by') ||
+        groupBy?.toLowerCase().replaceAll('  ', ' ').includes('order by')
+          ? ''
+          : 'ORDER BY id'
+      } OFFSET ${
+        Number(options?.page || 0) * Number(options?.pageSize || 10)
+      } ROWS FETCH NEXT 10 ROWS ONLY `;
     if (this.validateOptions(options)) {
       query =
         `) as pagingElement) as newPagingElement WHERE ` +
