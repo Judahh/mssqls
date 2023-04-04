@@ -130,7 +130,7 @@ export class MSSQL implements IPool {
         internalQuery?.toLowerCase().includes('order by') ||
         groupBy?.toLowerCase().replaceAll('  ', ' ').includes('order by')
           ? groupBy
-          : 'ORDER BY id'
+          : 'ORDER BY ' + (idName || 'id')
       } OFFSET ${
         Number(options?.page || 0) * Number(options?.pageSize || 10)
       } ROWS FETCH NEXT ${Number(options?.pageSize || 10)} ROWS ONLY `;
