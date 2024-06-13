@@ -35,7 +35,7 @@
   "homepage": "https://github.com/Judahh/flexiblePersistence#readme",
   "dependencies": {
     "tsqlstring": "latest",
-    "mssql": "latest",
+    "mssql": "10.0.0",
     "flexiblepersistence": "latest"
   },
   "devDependencies": {
